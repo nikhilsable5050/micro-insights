@@ -86,4 +86,63 @@ public class EmployeeController {
 
         return ResponseEntity.ok(response);
     }
+
+    // GET: Fetch all departments
+    @GetMapping("/departments")
+    public ResponseEntity<List<DepartmentResponse>> getAllDepartments() {
+        return ResponseEntity.ok(employeeService.getAllDepartments());
+    }
+
+    // GET: Fetch department by ID
+    @GetMapping("/departments/{id}")
+    public ResponseEntity<DepartmentResponse> getDepartmentById(
+            @PathVariable Long id) {
+
+        DepartmentResponse response =
+                employeeService.getDepartmentById(id);
+
+        if (response == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    // POST: Create department
+    @PostMapping("/departments")
+    public ResponseEntity<DepartmentResponse> createDepartment(
+            @RequestBody DepartmentResponse department) {
+
+        DepartmentResponse response =
+                employeeService.createDepartment(department);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    // PUT: Update department
+    @PutMapping("/departments/{id}")
+    public ResponseEntity<DepartmentResponse> updateDepartment(
+            @PathVariable Long id,
+            @RequestBody DepartmentResponse department) {
+
+        DepartmentResponse response =
+                employeeService.updateDepartment(id, department);
+
+        if (response == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    // DELETE: Delete department
+    @DeleteMapping("/departments/{id}")
+    public ResponseEntity<Void> deleteDepartment(
+            @PathVariable Long id) {
+
+        employeeService.deleteDepartment(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface EmployeeService {
 
+    // Employee CRUD
     Employee saveEmployee(Employee employee);
 
     List<Employee> getAllEmployees();
@@ -17,5 +18,18 @@ public interface EmployeeService {
 
     void deleteEmployee(Long id);
 
+    // Get department associated with an employee
     DepartmentResponse getDepartmentByEmployeeId(Long employeeId);
+
+    // Department CRUD using WebClient
+    List<DepartmentResponse> getAllDepartments();
+
+    DepartmentResponse getDepartmentById(Long departmentId);
+
+    DepartmentResponse createDepartment(DepartmentResponse department);
+
+    DepartmentResponse updateDepartment(
+            Long departmentId, DepartmentResponse department);
+
+    void deleteDepartment(Long departmentId);
 }

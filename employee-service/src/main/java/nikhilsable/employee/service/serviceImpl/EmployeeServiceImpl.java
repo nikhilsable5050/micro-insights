@@ -69,4 +69,30 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.getDepartmentId()
         );
     }
+
+    @Override
+    public List<DepartmentResponse> getAllDepartments() {
+        return departmentClient.getAllDepartments();
+    }
+
+    @Override
+    public DepartmentResponse getDepartmentById(Long departmentId) {
+        return departmentClient.getDepartmentById(departmentId);
+    }
+
+    @Override
+    public DepartmentResponse createDepartment(DepartmentResponse department) {
+        return departmentClient.createDepartment(department);
+    }
+
+    @Override
+    public DepartmentResponse updateDepartment(
+            Long departmentId, DepartmentResponse department) {
+        return departmentClient.updateDepartment(departmentId, department);
+    }
+
+    @Override
+    public void deleteDepartment(Long departmentId) {
+        departmentClient.deleteDepartment(departmentId);
+    }
 }
