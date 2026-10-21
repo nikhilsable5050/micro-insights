@@ -1,5 +1,6 @@
 package nikhilsable.employee.service.controller;
 
+import nikhilsable.employee.service.dto.DepartmentResponse;
 import nikhilsable.employee.service.entity.Employee;
 import nikhilsable.employee.service.service.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -70,5 +71,19 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/department")
+    public ResponseEntity<DepartmentResponse> getDepartmentByEmployeeId(
+            @PathVariable Long id) {
+
+        DepartmentResponse response =
+                employeeService.getDepartmentByEmployeeId(id);
+
+        if (response == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(response);
     }
 }
