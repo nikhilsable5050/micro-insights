@@ -1,5 +1,7 @@
 package nikhilsable.employee.service.controller;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import nikhilsable.employee.service.dto.DepartmentResponse;
 import nikhilsable.employee.service.entity.Employee;
 import nikhilsable.employee.service.service.EmployeeService;
@@ -17,6 +19,12 @@ public class EmployeeController {
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
+    }
+    @GetMapping("/config-test")
+    public String configTest(
+            @Value("${app.message}") String message,
+            @Value("${app.owner}") String owner) {
+        return message + " | " + owner;
     }
 
     @PostMapping
