@@ -1,5 +1,6 @@
 package nikhilsable.employee.service.service;
 
+import nikhilsable.employee.service.dto.DepartmentResponse;
 import nikhilsable.employee.service.entity.Employee;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface EmployeeService {
     Employee updateEmployee(Long id, Employee employee);
 
     void deleteEmployee(Long id);
+
+    DepartmentResponse getDepartmentByEmployeeId(Long employeeId);
 }
