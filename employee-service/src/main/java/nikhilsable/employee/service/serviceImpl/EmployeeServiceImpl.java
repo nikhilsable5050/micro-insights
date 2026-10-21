@@ -1,5 +1,7 @@
 package nikhilsable.employee.service.serviceImpl;
 
+import nikhilsable.employee.service.DepartmentClient;
+import nikhilsable.employee.service.dto.DepartmentResponse;
 import nikhilsable.employee.service.entity.Employee;
 import nikhilsable.employee.service.repository.EmployeeRepository;
 import nikhilsable.employee.service.service.EmployeeService;
@@ -11,9 +13,11 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final DepartmentClient departmentClient;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, DepartmentClient departmentClient) {
         this.employeeRepository = employeeRepository;
+        this.departmentClient = departmentClient;
     }
 
     @Override
@@ -50,5 +54,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
+    }
+    @Override
+    public DepartmentResponse getDepartmentByEmployeeId(Long employeeId) {
+
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElse(null);
+
+        if (employee == null) {
+            return null;
+        }
+
+        return departmentClient.getDepartmentById(
+                employee.getDepartmentId()
+        );
     }
 }
