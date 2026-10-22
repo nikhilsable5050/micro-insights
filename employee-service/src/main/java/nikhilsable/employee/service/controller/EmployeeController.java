@@ -1,5 +1,6 @@
 package nikhilsable.employee.service.controller;
 
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import nikhilsable.employee.service.dto.DepartmentResponse;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RefreshScope
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
